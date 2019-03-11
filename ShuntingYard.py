@@ -21,6 +21,10 @@ def shunt(infix):
                 pofix ,stack = pofix + stack[-1], stack[:-1]
             # remove the last character again to remove the ) from the stack
             stack = stack[:-1]
+        elif c in specials:
+            while stack and specials.get(c, 0) <= specials.get(stack[-1], 0):
+                pofix, stack = pofix + stack[-1], stack[:-1]
+            stack = stack + c
 
 
             
