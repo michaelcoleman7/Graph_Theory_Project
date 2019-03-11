@@ -31,6 +31,7 @@ def shunt(infix):
             # while c is less than last character on stack, add last character on stack onto pofix
             while stack and specials.get(c, 0) <= specials.get(stack[-1], 0):
                 pofix, stack = pofix + stack[-1], stack[:-1]
+                
             # Add c to stack
             stack = stack + c
         else:
@@ -40,8 +41,7 @@ def shunt(infix):
     # add remaining characters onto pofix    
     while stack:
         pofix, stack = pofix + stack[-1], stack[:-1]
-        
-        
+              
     return pofix
     
 print(shunt("(a.b)|(c*.d)"))
