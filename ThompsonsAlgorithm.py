@@ -116,6 +116,26 @@ def compile(pofix):
     
     # nfastack should only have a single nfa on it at this point
     return nfastack.pop()
+
+def followes(state):
+    """Return the set of states that can be reached from state following e arrows."""
+    # Create a new set, with state as its only member
+    states = set()
+    states.add(state)
+    
+    if state.label is None:
+        # Check if edge1 is a state
+        if state.edge1 is not None:
+            # If there's an edge1, follow it
+            states |= followes(state.edge1)
+        # Check if edge2 is a state
+        if state.edge2 is not None:
+            # If there's an edge2, follow it
+            states |= followes(state.edge2)
+            
+    # Return  the set of states
+    return states
+    
     
 
 
