@@ -1,6 +1,50 @@
 # Michael Coleman
 # Thompson's Algorithm
 
+# Shunt Function
+def shunt(infix):
+    """The Shunting Yard Algorithm for converting infix regular expressions to postfix"""
+    #set up variables
+    specials = {'*' : 50,'.' : 40,'|' : 30}
+    
+    pofix = ""
+    stack = ""
+    
+    #for loop running through each character in infix
+    for c in infix:
+        #if character = ( , then add to stack
+        if c == '(':
+            stack = stack + c
+            
+        # if character = ) , then remove each item on stack until ( is encountered
+        elif c == ')':
+            while stack[-1] != '(':
+                pofix ,stack = pofix + stack[-1], stack[:-1]
+                
+            # remove the last character again to remove the ) from the stack
+            stack = stack[:-1]
+            
+        # if character is in specials e.g. '*','.' or '|'
+        elif c in specials:
+            # while stack is not empty, Check Precedence of special character from infix
+            # and compare with last character on stack
+            # while c is less than last character on stack, add last character on stack onto pofix
+            while stack and specials.get(c, 0) <= specials.get(stack[-1], 0):
+                pofix, stack = pofix + stack[-1], stack[:-1]
+                
+            # Add c to stack
+            stack = stack + c
+        else:
+            # Add c to pofix
+            pofix = pofix + c
+            
+    # add remaining characters onto pofix    
+    while stack:
+        pofix, stack = pofix + stack[-1], stack[:-1]
+              
+    return pofix
+    
+# Thompson's Algorithm
 class state:
     label = None
     edge1 = None
@@ -13,7 +57,8 @@ class nfa:
     def __init__(self, initial, accept):
         self.initial = initial
         self.accept = accept
-        
+
+# Compile Function
 def compile(pofix):
     nfastack = []
     
@@ -71,8 +116,6 @@ def compile(pofix):
     
     # nfastack should only have a single nfa on it at this point
     return nfastack.pop()
-
-print(compile("ab.cd.|"))
     
 
 
