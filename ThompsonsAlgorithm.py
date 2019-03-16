@@ -166,6 +166,13 @@ def match(infix, string):
     # Check if the accept state is in the set of current states
     return (nfa.accept in current)
 
+# A few tests
+infixes = ["a.b.c*", "a.(b|d).c*", "(a.(b|d))", "a.(b.b)*.c"]
+strings = ["" , "abc" , "abbc" , "abcc", "abad" , "abbbc"]
+
+for i in infixes:
+    for s in strings:
+        print(match(i,s), i, s)
     
     
 
