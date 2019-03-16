@@ -123,6 +123,7 @@ def followes(state):
     states = set()
     states.add(state)
     
+    # Check if state has arrows labelled e from it
     if state.label is None:
         # Check if edge1 is a state
         if state.edge1 is not None:
@@ -135,6 +136,36 @@ def followes(state):
             
     # Return  the set of states
     return states
+
+def match(infix, string):
+    """Matches string to infix regular expression"""
+    
+    # Shunt and compile the regular expression
+    postfix = shunt(infix)
+    nfa = compile(postfix)
+    
+    # The current set of states and the next set of states
+    current = set()
+    next = set()
+    
+    # Add the initial state to the current set
+    current |= followes(nfa.initial)
+    
+    # Loop through each character in the string
+    for s in string:
+        # Loop through the current set of states
+        for c in current:
+            # Check if that state is labelled s
+            if c.label == s:
+                # Add the edge1 state to the next set
+                next |= followes(c.edge1)
+            # Set current to next, and clear out next
+            current = next
+            next = set()
+            
+    # Check if the accept state is in the set of current states
+    return (nfa.accept in current)
+
     
     
 
