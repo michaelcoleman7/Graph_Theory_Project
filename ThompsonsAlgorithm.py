@@ -86,7 +86,7 @@ def compile(pofix):
             # of the two NFA's popped from the stack, to the new state
             accept = state()
             nfa1.accept.edge1 = accept
-            nfa2.accept.edge2 = accept
+            nfa2.accept.edge1 = accept
             # push new NFA to the stack
             newfa = nfa(initial, accept)
             nfastack.append(newfa)
@@ -160,14 +160,14 @@ def match(infix, string):
                 # Add the edge1 state to the next set
                 next |= followes(c.edge1)
             # Set current to next, and clear out next
-            current = next
-            next = set()
+        current = next
+        next = set()
             
     # Check if the accept state is in the set of current states
     return (nfa.accept in current)
 
 # A few tests
-infixes = ["a.b.c*", "a.(b|d).c*", "(a.(b|d))", "a.(b.b)*.c"]
+infixes = ["a.b.c*", "a.(b|d).c*", "(a.(b|d))*", "a.(b.b)*.c"]
 strings = ["" , "abc" , "abbc" , "abcc", "abad" , "abbbc"]
 
 for i in infixes:
