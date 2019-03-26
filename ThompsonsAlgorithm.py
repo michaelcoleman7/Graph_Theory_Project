@@ -120,6 +120,21 @@ def compile(pofix):
             # Push new NFA to the stack
             newfa = nfa(initial, accept)
             nfastack.append(newfa)
+        elif c =='?':
+            #Pop a single NFA from the stack
+            nfa1 = nfastack.pop()
+            # Create new initial and accept states
+            initial = state()
+            accept = state()
+            
+            initial.edge1 = nfa1.initial
+            initial.edge2 = accept
+            
+            # Join the old accept state to the new accept state
+            nfa1.accept.edge1 = accept
+            # Push new NFA to the stack
+            newfa = nfa(initial, accept)
+            nfastack.append(newfa)
             
         else:
             accept = state()
@@ -184,7 +199,7 @@ def match(infix, string):
 # A few tests
 infixes = ["a.b.c*", "a.(b|d).c*", "(a.(b|d))*", "a.(b.b)*.c"]
 strings = ["" , "abc" , "abbc" , "abcc", "abad" , "abbbc"]
-infixes2 = ["(c.a+).r"]
+infixes2 = ["(c.a+).r","(c.a?).r"]
 strings2 = ["" , "car","caaaaar","cr","cacacar"]
 
 for i in infixes2:
