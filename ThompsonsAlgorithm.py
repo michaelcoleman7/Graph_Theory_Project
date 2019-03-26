@@ -7,8 +7,7 @@ def shunt(infix):
     #set up variables
     specials = {'?' : 50,'+' : 50,'*' : 50,'.' : 40,'|' : 30}
     
-    pofix = ""
-    stack = ""
+    pofix,stack = "",""
     
     #for loop running through each character in infix
     for c in infix:
@@ -46,17 +45,13 @@ def shunt(infix):
     
 # Thompson's Algorithm
 class state:
-    label = None
-    edge1 = None
-    edge2 = None
+    label,edge1,edge2 = None, None, None
     
 class nfa:
-    initial = None
-    accept = None
+    initial,accept = None, None
     
     def __init__(self, initial, accept):
-        self.initial = initial
-        self.accept = accept
+        self.initial,self.accept = initial, accept
 
 # Compile Function
 def compile(pofix):
@@ -96,8 +91,7 @@ def compile(pofix):
             #Pop a single NFA from the stack
             nfa1 = nfastack.pop()
             # Create new initial and accept states
-            initial = state()
-            accept = state()
+            accept,initial = state(),state()
             # Join the new initial state to nfa's initial state and new accept state
             initial.edge1 = nfa1.initial
             initial.edge2 = accept
@@ -111,8 +105,7 @@ def compile(pofix):
             #Pop a single NFA from the stack
             nfa1 = nfastack.pop()
             # Create new initial and accept states
-            initial = state()
-            accept = state()
+            accept,initial = state(),state()
             # Join the new initial state to nfa's initial state
             initial.edge1 = nfa1.initial
             # Join the old accept state to the new accept state and the nfa1's initial state
@@ -125,8 +118,7 @@ def compile(pofix):
             #Pop a single NFA from the stack
             nfa1 = nfastack.pop()
             # Create new initial and accept states
-            initial = state()
-            accept = state()
+            accept,initial = state(),state()
             
             initial.edge1 = nfa1.initial
             initial.edge2 = accept
@@ -138,8 +130,7 @@ def compile(pofix):
             nfastack.append(newfa)
             
         else:
-            accept = state()
-            initial = state()
+            accept,initial = state(),state()
             initial.label = c
             initial.edge1 = accept
             newfa = nfa(initial, accept)
@@ -176,8 +167,7 @@ def match(infix, string):
     nfa = compile(postfix)
     
     # The current set of states and the next set of states
-    current = set()
-    next = set()
+    current,next = set(),set()
     
     # Add the initial state to the current set
     current |= followes(nfa.initial)
