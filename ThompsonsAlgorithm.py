@@ -205,28 +205,35 @@ strings2 = ["" , "car","caaaaar","cr","cacacar", "ca","carr"]
 exit = False
 
 while exit == False:
+    # Display user options
     print("Please select from the following options: \n 1) Compare *, | and . operators with sample infixes and strings\n 2) Compare + and ? operators with sample infixes and strings\n 3) Manually enter infix and string to compare\n 4) Exit")
     
+    # Recieve user input from console and assign to option variable
     option = input()
     
+    # If option is 1, then show *, | and . samples
     if option == "1":
         for i in infixes:
             for s in strings:
                 print(match(i,s), i, s )
             print("\n")
+    # If option is 2, then show + and ? samples
     elif option == "2":
         for i in infixes2:
             for s in strings2:
                 print(match(i,s), i, s )
             print("\n")
+    # If option  = 3, then allow manual entry of an infix expression and a string and match them
     elif option == "3": 
         print("Enter the infix expression you would like to use:")
         infix = input()
         print("\nEnter the string you would like to use:")
         string = input()
         print(match(infix,string), infix, string )
+    # If option is 4, set option to true which exits while loop, terminating application
     elif option == "4":
        exit = True; 
+    # Handle all other user invalid inputs
     else:
         print("Invalid Input\n")
     
