@@ -5,7 +5,7 @@
 def shunt(infix):
     """The Shunting Yard Algorithm for converting infix regular expressions to postfix"""
     #set up variables
-    specials = {'*' : 50,'.' : 40,'|' : 30}
+    specials = {'?' : 70,'+' : 60,'*' : 50,'.' : 40,'|' : 30}
     
     pofix = ""
     stack = ""
@@ -106,6 +106,21 @@ def compile(pofix):
             # Push new NFA to the stack
             newfa = nfa(initial, accept)
             nfastack.append(newfa)
+        elif c =='+':
+            #Pop a single NFA from the stack
+            nfa1 = nfastack.pop()
+            # Create new initial and accept states
+            initial = state()
+            accept = state()
+            # Join the new initial state to nfa's initial state
+            initial.edge1 = nfa1.initial
+            # Join the old accept state to the new accept state and the nfa1's initial state
+            nfa1.accept.edge1 = nfa1.initial
+            nfa1.accept.edge2 = accept
+            # Push new NFA to the stack
+            newfa = nfa(initial, accept)
+            nfastack.append(newfa)
+            
         else:
             accept = state()
             initial = state()
@@ -169,9 +184,11 @@ def match(infix, string):
 # A few tests
 infixes = ["a.b.c*", "a.(b|d).c*", "(a.(b|d))*", "a.(b.b)*.c"]
 strings = ["" , "abc" , "abbc" , "abcc", "abad" , "abbbc"]
+infixes2 = ["(c.a+).r"]
+strings2 = ["" , "car","caaaaar","cr","cacacar"]
 
-for i in infixes:
-    for s in strings:
+for i in infixes2:
+    for s in strings2:
         print(match(i,s), i, s)
     
     
