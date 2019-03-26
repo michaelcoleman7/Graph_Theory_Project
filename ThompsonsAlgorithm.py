@@ -5,7 +5,7 @@
 def shunt(infix):
     """The Shunting Yard Algorithm for converting infix regular expressions to postfix"""
     #set up variables
-    specials = {'?' : 70,'+' : 60,'*' : 50,'.' : 40,'|' : 30}
+    specials = {'?' : 50,'+' : 50,'*' : 50,'.' : 40,'|' : 30}
     
     pofix = ""
     stack = ""
@@ -199,12 +199,33 @@ def match(infix, string):
 # A few tests
 infixes = ["a.b.c*", "a.(b|d).c*", "(a.(b|d))*", "a.(b.b)*.c"]
 strings = ["" , "abc" , "abbc" , "abcc", "abad" , "abbbc"]
-infixes2 = ["(c.a+).r","(c.a?).r"]
-strings2 = ["" , "car","caaaaar","cr","cacacar"]
+infixes2 = ["(c.a+).r","(c.a?).r", "(c.a)+.r?"]
+strings2 = ["" , "car","caaaaar","cr","cacacar", "ca","carr"]
 
 for i in infixes2:
     for s in strings2:
-        print(match(i,s), i, s)
+        print(match(i,s), i, s )
+    print("\n")
+    
+exit = False
+
+while exit == False:
+    print("Please select from the following options: \n 1) Compare *, | and . operators with sample infixes and strings\n 2) Compare + and ? operators with sample infixes and strings\n 3) Manually enter infix and string to compare")
+    
+    option = input()
+    
+    if option == "1":
+        for i in infixes:
+            for s in strings:
+                print(match(i,s), i, s )
+            print("\n")
+    if option == "2":
+        for i in infixes2:
+            for s in strings2:
+                print(match(i,s), i, s )
+            print("\n")
+    
+    exit = True;
     
     
 
