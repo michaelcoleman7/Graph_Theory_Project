@@ -60,6 +60,7 @@ class nfa:
 
 # Compile Function
 def compile(pofix):
+    """Compiles a postfix regular expression into an NFA"""
     nfastack = []
     
     for c in pofix:
@@ -201,12 +202,6 @@ infixes = ["a.b.c*", "a.(b|d).c*", "(a.(b|d))*", "a.(b.b)*.c"]
 strings = ["" , "abc" , "abbc" , "abcc", "abad" , "abbbc"]
 infixes2 = ["(c.a+).r","(c.a?).r", "(c.a)+.r?"]
 strings2 = ["" , "car","caaaaar","cr","cacacar", "ca","carr"]
-
-for i in infixes2:
-    for s in strings2:
-        print(match(i,s), i, s )
-    print("\n")
-    
 exit = False
 
 while exit == False:
@@ -224,7 +219,12 @@ while exit == False:
             for s in strings2:
                 print(match(i,s), i, s )
             print("\n")
-    
+    if option == "3": 
+        print("Enter the infix expression you would like to use:")
+        infix = input()
+        print("\nEnter the string you would like to use:")
+        string = input()
+        print(match(infix,string), infix, string )
     exit = True;
     
     
