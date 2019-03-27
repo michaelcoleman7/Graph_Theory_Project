@@ -1,20 +1,23 @@
-"# Thompsons_Construction" 
+# Thompsons_Construction
 
+## Student Details
 Name: Michael Coleman
+
 GMIT Number: G00347650
+
 Email: G00347650@gmit.ie
 
-Problem statement: 
+## Problem statement: 
 To write a program in python which builds non-deterministic finite automatons (NFA) from a regular expression, and can use the NFA to determine if the regular expression matches any given string of text.
 
-Projects parts: 
+## Projects parts: 
 1. Parse the regular expression from infix to postfix notation.
 2. Build a series of small NFA’s for parts of the regular expression.
 3. Use the smaller NFA’s to create the overall NFA.
 4. Implement the matching algorithm using the NFA. 
 
 
-Research for each project part: 
+## Research for each project part: 
 1. First I had to try and figure out how to convert an expression from it’s infix form to its postfix form, to do this I looked at the videos provided on moodle as well as looking at some websites online, particularly this one - http://condor.depaul.edu/ichu/csc415/notes/notes9/Infix.htm  
 Once, I had a grasp on how to do infix to postfix notation I made a few attempts on paper to see if I had enough understanding of it to carry it out, which I did with success. I then started researching coding in Python to learn how to code better in Python as I had never coded in Python before this project and my only experiences were the video’s I had watched on the moodle page. I looked into the Python docs - https://docs.python.org/3/tutorial/  - to refresh myself on the videos I had watched previously as well as see if I could learn something extra that may be of use.
 
@@ -27,7 +30,7 @@ Once, I had a grasp on how to do infix to postfix notation I made a few attempts
 5. (Extra Research): I looked at some Python docs to see what else could be added to the project in order to add more functionality to my submission and found the input() function - https://www.w3schools.com/python/ref_func_input.asp - which takes input from the user in the console and can be stored in a variable. I also looked into the while loops in Python and how booleans work in Python using the docs in order to loop the application using a boolean control. From these I added an interface which gives users options to choose from.
 
 
-Explanation for each Project part in code: 
+## Explanation for each Project part in code: 
 1. Regular expressions are taken in an infix expression e.g. "a.(b|d).c*" as a parameter for the matching function and are converted using a shunt function which takes each character in the string and converts them to postfix, this is done by determining if the character read in is a bracket, special character e.g. ‘*’ or just a regular character e.g. ‘a’. If it is a special character, the according algorithm is used in correlation with the current and previous characters and the characters are added to the postfix based on their order of precedence.
 
 2. The NFA’s are created using 2 classes, state and nfa. The nfa class uses the state class to create an NFA. the state class uses a label and a set of edges (edge1 and edge 2) depending on if the NFA needs multiple edges(may only use 1 edge). The label points to the character in postfix while the set of edges are to connect the set’s of nfa’s states. 
@@ -38,7 +41,7 @@ Explanation for each Project part in code:
 
 5. (Extra) Interface: Asks user for input, whether they want to view pre-generated infixed expressions and strings being matched or if they want to manually want to enter an infix expression and a string which are stored in variables using the input() function and matched using the match function sending the entered values as parameters. The interface is run using a while loop controlled with a boolean variable, which when the user selects the exit option, the loop control variable is set to True, which exits the loop. Also when the user enters incorrect input option the loop circles back after telling them their input is invalid.
 
-How to run program: 
+ ## How to run program: 
  - Clone repository from github or else copy the python code into a python file.
  - In command line, cd (change directory) into the folder where the file is stored.
  - From the command line, type python followed by the file name, e.g. python ThompsonsAlgorithm.py.
