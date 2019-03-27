@@ -38,4 +38,10 @@ Explanation for each Project part in code:
 
 5. (Extra) Interface: Asks user for input, whether they want to view pre-generated infixed expressions and strings being matched or if they want to manually want to enter an infix expression and a string which are stored in variables using the input() function and matched using the match function sending the entered values as parameters. The interface is run using a while loop controlled with a boolean variable, which when the user selects the exit option, the loop control variable is set to True, which exits the loop. Also when the user enters incorrect input option the loop circles back after telling them their input is invalid.
 
+How to run program: 
+ - Clone repository from github or else copy the python code into a python file.
+ - In command line, cd (change directory) into the folder where the file is stored.
+ - From the command line, type python followed by the file name, e.g. python ThompsonsAlgorithm.py.
+ - User interface will display, which gives user 4 options to choose from,the first 2 options (activated by entering 1 or 2 respectively as input value) involve testing using pre-generated expressions and strings to test operators and see if they match, while the 3rd option allows users to enter their own input for the infix expression and string to see if they match(3 must be entered as option value in console interface to access this), when selecting this option users enter the infix expression first, followed by the string they wish to match.
+ - To exit the application the user must enter 4 as the option in the console interface.
 
