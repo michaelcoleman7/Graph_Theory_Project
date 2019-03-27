@@ -25,3 +25,5 @@ Once, I had a grasp on how to do infix to postfix notation I made a few attempts
 4. During the video tutorial, I noticed that sets were being used so I paused the video and looked up the docs to see how sets work - https://docs.python.org/3/tutorial/datastructures.html#sets - From this I got a good feel as to how they work and what can be done with the sets.
 
 5. (Extra Research): I looked at some Python docs to see what else could be added to the project in order to add more functionality to my submission and found the input() function - https://www.w3schools.com/python/ref_func_input.asp - which takes input from the user in the console and can be stored in a variable. I also looked into the while loops in Python and how booleans work in Python using the docs in order to loop the application using a boolean control. From these I added an interface which gives users options to choose from.
+
+
