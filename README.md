@@ -1,4 +1,4 @@
-# Thompsons_Construction
+# Graph_Theory_Project
 
 ## Student Details
 Name: Michael Coleman
