@@ -1,12 +1,5 @@
 # Graph_Theory_Project
 
-## Student Details
-Name: Michael Coleman
-
-GMIT Number: G00347650
-
-Email: G00347650@gmit.ie
-
 ## Problem statement: 
 To write a program in python which builds non-deterministic finite automatons (NFA) from a regular expression, and can use the NFA to determine if the regular expression matches any given string of text.
 
